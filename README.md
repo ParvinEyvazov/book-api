@@ -242,3 +242,17 @@ Response: {
     surname:    string
 }[]
 ```
+
+## Running with DB
+
+You need to have Docker Compose on your machine, then on the root folder:
+
+- Building images
+
+```cmd
+docker compose build --no-cache
+```
+
+```Create and run containers
+docker compose up
+```
