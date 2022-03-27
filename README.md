@@ -36,6 +36,13 @@ docker compose up
 
 ## 3 - Running tests
 
+- Coverage
+<p align="center">
+<a>
+    <img src="./docs/cover.png" alt="layers">
+  </a>
+</p>
+
 - Run Tests:
 
 ```cmd
