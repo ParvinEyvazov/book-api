@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/parvineyvazov/book-api/model"
@@ -23,6 +24,8 @@ func (h *Handler) GetBooks(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) GetBook(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
+
+	fmt.Println(`ID ID ID ID`, vars["id"])
 
 	book, err := h.service.GetBook(vars["id"])
 	if err != nil {
