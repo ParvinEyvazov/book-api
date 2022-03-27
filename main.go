@@ -9,5 +9,5 @@ import (
 func main() {
 
 	server := server.NewServer()
-	log.Fatalln(server.StartServer(8081))
+	log.Fatalln(server.StartServer(8080))
 }
