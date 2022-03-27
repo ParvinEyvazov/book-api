@@ -79,7 +79,7 @@ func Test_GetBook(t *testing.T) {
 		assert.Nil(t, err)
 	})
 
-	t.Run("SERVICE [error case] get books", func(t *testing.T) {
+	t.Run("SERVICE [error case] get book", func(t *testing.T) {
 
 		mockController := gomock.NewController(t)
 		mockRepository := mock.NewMockIRepository(mockController)
