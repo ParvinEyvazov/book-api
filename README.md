@@ -12,7 +12,50 @@ This API contains 2 services: Book, Author
 
 <br>
 
-## Version
+## 1 - Running project
+
+On the root folder:
+
+```cmd
+go run .
+```
+
+## 2 - (alternative) Running with DB (using Docker)
+
+You need to have Docker Compose on your machine, then on the root folder:
+
+- Building images
+
+```cmd
+docker compose build --no-cache
+```
+
+```Create and run containers
+docker compose up
+```
+
+## 3 - Running tests
+
+- Run Tests:
+
+```cmd
+go test -v ./...
+```
+
+- Calculate coverage
+
+```cmd
+go test -cover ./...
+```
+
+- Export coverage file as html
+
+```cmd
+go test -coverprofile c.out ./...
+go tool cover -html=c.out
+```
+
+## 4 - Version
 
 API has 2 version.
 
@@ -21,7 +64,7 @@ API has 2 version.
 
 <br>
 
-## BOOK Endpoints
+## 5 - BOOK Endpoints
 
 - GET ALL BOOKS
 
@@ -241,18 +284,4 @@ Response: {
     name:       string
     surname:    string
 }[]
-```
-
-## Running with DB
-
-You need to have Docker Compose on your machine, then on the root folder:
-
-- Building images
-
-```cmd
-docker compose build --no-cache
-```
-
-```Create and run containers
-docker compose up
 ```
