@@ -26,14 +26,17 @@ type IRepository interface {
 type RepositoryLocal struct {
 }
 
+type RepositoryDB struct {
+}
+
 // Repository from local
 func NewLocalRepository() IRepository {
 	return &RepositoryLocal{}
 }
 
 // Repository from DB
-func NewRepository() IRepository {
-	return nil
+func NewDBRepository() IRepository {
+	return &RepositoryDB{}
 }
 
 var Books model.Books = model.Books{}

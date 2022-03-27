@@ -43,11 +43,35 @@ func setupLocalStorageRoutes(myRouter *mux.Router) {
 	myRouter.HandleFunc(localUrl("author/{id}"), handler.DeleteAuthor).Methods(http.MethodDelete)
 }
 
+func setupDBRoutes(myRouter *mux.Router) {
+	repository := repository.NewDBRepository()
+	service := service.NewService(repository)
+	handler := handler.NewHandler(service)
+
+	// BOOK endpoints
+	myRouter.HandleFunc(dbUrl("books"), handler.GetBooks).Methods(http.MethodGet)
+	myRouter.HandleFunc(dbUrl("book/{id}"), handler.GetBook).Methods(http.MethodGet)
+	myRouter.HandleFunc(dbUrl("book/search/{search_text}"), handler.SearchBooks).Methods(http.MethodGet)
+	myRouter.HandleFunc(dbUrl("book"), handler.CreateBook).Methods(http.MethodPost)
+	myRouter.HandleFunc(dbUrl("book/{id}"), handler.UpdateBook).Methods(http.MethodPut)
+	myRouter.HandleFunc(dbUrl("book/{id}"), handler.DeleteBook).Methods(http.MethodDelete)
+
+	// AUTHOR endpoints
+	myRouter.HandleFunc(dbUrl("authors"), handler.GetAuthors).Methods(http.MethodGet)
+	myRouter.HandleFunc(dbUrl("author/{id}"), handler.GetAuthor).Methods(http.MethodGet)
+	myRouter.HandleFunc(dbUrl("author/search/{search_text}"), handler.SearchAuthors).Methods(http.MethodGet)
+	myRouter.HandleFunc(dbUrl("author"), handler.CreateAuthor).Methods(http.MethodPost)
+	myRouter.HandleFunc(dbUrl("author/{id}"), handler.UpdateAuthor).Methods(http.MethodPut)
+	myRouter.HandleFunc(dbUrl("author/{id}"), handler.DeleteAuthor).Methods(http.MethodDelete)
+
+}
+
 func (s *Server) StartServer(port int) error {
 
 	myRouter := mux.NewRouter().StrictSlash(true)
 
 	setupLocalStorageRoutes(myRouter)
+	setupDBRoutes(myRouter)
 
 	httpHandler := cors.Default().Handler(myRouter)
 	err := http.ListenAndServe(fmt.Sprintf(":%d", port), httpHandler)
