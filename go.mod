@@ -8,4 +8,5 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
 	github.com/rs/cors v1.8.2
+	github.com/stretchr/testify v1.7.1
 )
